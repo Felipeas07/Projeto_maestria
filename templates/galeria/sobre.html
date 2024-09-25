@@ -20,6 +20,15 @@
             <a href="{% url 'servicos' %}"><img src="{% static '/assets/ícones/1x/icons8-serviços-25.png' %}"> Serviços</a>
             <a href="{% url 'register' %}"><img src="{% static '/assets/ícones/1x/icons8-cadastro-25.png' %}"> Cadastro</a>
             <a href="{% url 'contato' %}"><img src="{% static '/assets/ícones/1x/icons8-e-mail-25.png' %}"> Contato</a>
+
+            <!-- Verifica se o usuário está logado -->
+            {% if user.is_authenticated %}
+                <p class="user-greeting">Olá, {{ user.username }}</p>
+                <form method="POST" action="{% url 'logout' %}" class="logout-form">
+                    {% csrf_token %}
+                    <button type="submit" class="logout-button">Sair</button>
+                </form>
+            {% endif %}
         </nav>
     </header>
 

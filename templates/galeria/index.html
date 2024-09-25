@@ -31,6 +31,15 @@
                 <a href="{% url 'contato' %}">
                     <img src="{% static 'assets/ícones/1x/icons8-e-mail-25.png' %}" alt="Contato"> Contato
                 </a>
+
+                <!-- Verifica se o usuário está logado -->
+            {% if user.is_authenticated %}
+            <p class="user-greeting">Olá, {{ user.username }}</p>
+            <form method="POST" action="{% url 'logout' %}" class="logout-form">
+                {% csrf_token %}
+                <button type="submit" class="logout-button">Sair</button>
+            </form>
+        {% endif %}
             </nav>
         </header>
 
@@ -72,8 +81,8 @@
 
     <footer class="rodape">
       <div class="rodape__icones">
-          <a href="#" target=”_blank” >
-              <img src="{% static '/assets/ícones/1x/facebook.png' %}" alt="ícone twitter">
+          <a href="https://www.facebook.com/p/Maestria-Automa%C3%A7%C3%A3o-100079917003007/" target=”_blank” >
+              <img src="{% static '/assets/ícones/1x/facebook.png' %}" alt="ícone facebook">
           </a>
           <a href="#" target=”_blank” >
               <img src="{% static '/assets/ícones/1x/instagram.png' %}" alt="ícone instagram">

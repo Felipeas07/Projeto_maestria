@@ -1,6 +1,7 @@
 from django.urls import path
 from galeria.views import index, servicos, sobre, cadastro, contato
 from . import views
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('', views.index, name='index'),  # Página inicial
@@ -10,4 +11,5 @@ urlpatterns = [
     path('contato/', contato, name='contato'),  # Página de contato
     path('login/', views.login_view, name='login'), # Página de login
     path('register/', views.register, name='register'),  # Página de registro
+    path('logout/', views.logout_view, name='logout'),
 ]

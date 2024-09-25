@@ -78,7 +78,37 @@ body {
     background-color: #0056b3; /* Cor ao passar o mouse */
 }
 
+/* Estilo para o parágrafo que exibe o nome do usuário */
+.user-greeting {
+    color: white; /* Define a cor do texto como branca */
+    margin: 0; /* Remove margens, se necessário */
+}
 
+/* Estilos específicos para o formulário de logout */
+.logout-form {
+    display: inline; /* Mantém o formulário na mesma linha */
+    margin-left: 15px; /* Espaçamento à esquerda se necessário */
+    background-color: #005f83; /* Cor de fundo */
+    padding: 15px 20px; /* Mesma padding do cabeçalho */
+    border-radius: 5px; /* Bordas arredondadas se necessário */
+}
+
+/* Estilo para o botão de logout */
+.logout-button {
+    background-color: #005f83; /* Cor de fundo */
+    color: white; /* Cor do texto */
+    border: none; /* Sem borda */
+    padding: 12px 24px; /* Espaçamento interno */
+    border-radius: 5px; /* Bordas arredondadas */
+    cursor: pointer; /* Muda o cursor para indicar que é clicável */
+    font-size: 16px; /* Tamanho da fonte */
+    transition: background-color 0.3s ease; /* Efeito de transição */
+}
+
+/* Garantindo que o botão não herde estilos de botões globais */
+.logout-button:hover {
+    background-color: #003f57 !important; /* Cor ao passar o mouse */
+}
 
 
 /* Menu lateral */
@@ -122,6 +152,7 @@ nav.menu-lateral__navegacao a:hover {
 .C-title {
     text-align: center;
 }
+
 
 /* Formulário */
 form {
@@ -354,3 +385,6 @@ button:hover {
         padding: 15px 0; /* Menos espaçamento em telas pequenas */
     }
 }
+
+
+

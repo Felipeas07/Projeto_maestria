@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.http import HttpResponse
 from .forms import CustomUserCreationForm
 
@@ -26,7 +26,9 @@ def login_view(request):
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)
-        if user is not None:
+        if user.is_superuser:
+            return redirect('/admin/')  # Redireciona para a página de admin
+        elif user is not None:
             auth_login(request, user)  # Renomeie a função de login para evitar conflito com a view
             return redirect('index')  # Redireciona para a página 'index' após login
         else:
@@ -49,3 +51,11 @@ def register(request):
         form = CustomUserCreationForm()
     
     return render(request, 'galeria/register.html', {'form': form})
+
+# Função de logout
+def logout_view(request):
+    if request.method == 'POST' or request.method == 'GET':
+        auth_logout(request)
+        return render(request, 'galeria/logout.html')  # Redireciona para a página de logout
+    else:
+        return redirect('index')  # Redireciona para a página inicial se o método não for suportado

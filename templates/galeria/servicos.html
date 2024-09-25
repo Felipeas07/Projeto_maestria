@@ -19,6 +19,15 @@
             <a href="{% url 'servicos' %}"><img src="{% static '/assets/ícones/1x/icons8-serviços-25.png' %}"> Serviços</a>
             <a href="{% url 'register' %}"><img src="{% static '/assets/ícones/1x/icons8-cadastro-25.png' %}"> Cadastro</a>
             <a href="{% url 'contato' %}"><img src="{% static '/assets/ícones/1x/icons8-e-mail-25.png' %}"> Contato</a>
+
+            <!-- Verifica se o usuário está logado -->
+            {% if user.is_authenticated %}
+                <p class="user-greeting">Olá, {{ user.username }}</p>
+                <form method="POST" action="{% url 'logout' %}" class="logout-form">
+                    {% csrf_token %}
+                    <button type="submit" class="logout-button">Sair</button>
+                </form>
+            {% endif %}
         </nav>
     </header>
 
@@ -31,25 +40,25 @@
                     <img src="{% static 'assets/img/sala_auto.webp' %}" alt="Iluminação Inteligente" class="card-image">
                     <h3>Iluminação Inteligente</h3>
                     <p>Transforme sua casa com controle de iluminação por aplicativo.</p>
-                    <button onclick="window.location.href='#'">Solicitar Orçamento</button>
+                    <button onclick="window.location.href='https://wa.me/5583993846067'">Solicitar Orçamento</button>
                 </div>
                 <div class="card">
                     <img src="{% static 'assets/img/camera.jpg' %}" alt="Sistemas de Segurança" class="card-image">
                     <h3>Sistemas de Segurança</h3>
                     <p>Proteja sua casa com câmeras e alarmes inteligentes.</p>
-                    <button onclick="window.location.href='#'">Solicitar Orçamento</button>
+                    <button onclick="window.location.href='https://wa.me/5583993846067'">Solicitar Orçamento</button>
                 </div>
                 <div class="card">
                     <img src="{% static 'assets/img/controle-temperatura.jpg' %}" alt="Controle de Climatização" class="card-image">
                     <h3>Controle de Climatização</h3>
                     <p>Gerencie o clima da sua casa de forma eficiente e inteligente.</p>
-                    <button onclick="window.location.href='#'">Solicitar Orçamento</button>
+                    <button onclick="window.location.href='https://wa.me/5583993846067'">Solicitar Orçamento</button>
                 </div>
                 <div class="card">
                     <img src="{% static 'assets/img/automacao.jpeg' %}" alt="Automação de Cortinas" class="card-image">
                     <h3>Automação de Cortinas</h3>
                     <p>Abra e feche suas cortinas com um toque no celular.</p>
-                    <button onclick="window.location.href='#'">Solicitar Orçamento</button>
+                    <button onclick="window.location.href='https://wa.me/5583993846067'">Solicitar Orçamento</button>
                 </div>
             </div>
             <p>Entre em contato conosco para mais informações sobre nossos serviços!</p>
