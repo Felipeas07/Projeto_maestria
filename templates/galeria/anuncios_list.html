@@ -1,0 +1,6 @@
+<h1>Lista de Anúncios</h1>
+<ul>
+    {% for anuncio in anuncios %}
+        <li>{{ anuncio.titulo }} - {{ anuncio.valor }}</li>
+    {% endfor %}
+</ul>

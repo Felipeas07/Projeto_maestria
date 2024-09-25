@@ -1,13 +1,34 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
-from django.http import HttpResponse
 from .forms import CustomUserCreationForm
+from .models import Anuncio
+from .forms import AnuncioFilterForm, ContactForm
+from django.core.mail import send_mail
+from django.conf import settings
 
 def index(request):
     return render(request, 'galeria/index.html')
 
 def servicos(request):
-    return render(request, 'galeria/servicos.html')
+    anuncios = Anuncio.objects.all()  # Busca todos os anúncios do banco de dados
+    return render(request, 'galeria/servicos.html', {'anuncios': anuncios})
+
+def buscar_anuncios(request):
+    form = AnuncioFilterForm(request.GET or None)
+    anuncios = Anuncio.objects.all()
+    if form.is_valid():
+        if form.cleaned_data.get('categoria'):
+            anuncios = anuncios.filter(categoria=form.cleaned_data['categoria'])
+        if form.cleaned_data.get('valor_min'):
+            anuncios = anuncios.filter(valor__gte=form.cleaned_data['valor_min'])
+        if form.cleaned_data.get('valor_max'):
+            anuncios = anuncios.filter(valor__lte=form.cleaned_data['valor_max'])
+    return render(request, 'galeria/servicos.html', {'form': form, 'anuncios': anuncios})
+
+def lista_anuncios(request):
+    anuncios = Anuncio.objects.all()
+    return render(request, 'galeria/servicos.html', {'anuncios': anuncios})
+
 
 def sobre(request):
     return render(request, 'galeria/sobre.html')
@@ -16,7 +37,21 @@ def cadastro(request):
     return render(request, 'galeria/cadastro.html')
 
 def contato(request):
-    return render(request, 'galeria/contato.html')
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        motivo = request.POST.get('motivo')
+        mensagem = request.POST.get('mensagem')
+        
+        # Envio do e-mail
+        send_mail(
+            f"Contato: {motivo}",
+            f"Mensagem de {email}:\n\n{mensagem}",
+            settings.DEFAULT_FROM_EMAIL,  # Endereço de origem configurado no settings
+            ['admin@example.com'],  # Substitua pelo e-mail do destinatário
+        )
+        return render(request, 'contato.html', {'success': True})
+
+    return render(request, 'contato.html')
 
 def user_login(request):  # Renomeie esta função para evitar conflito
     return render(request, 'galeria/login.html')
@@ -59,3 +94,7 @@ def logout_view(request):
         return render(request, 'galeria/logout.html')  # Redireciona para a página de logout
     else:
         return redirect('index')  # Redireciona para a página inicial se o método não for suportado
+    
+
+
+

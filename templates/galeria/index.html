@@ -33,15 +33,16 @@
                 </a>
 
                 <!-- Verifica se o usuário está logado -->
-            {% if user.is_authenticated %}
-            <p class="user-greeting">Olá, {{ user.username }}</p>
-            <form method="POST" action="{% url 'logout' %}" class="logout-form">
-                {% csrf_token %}
-                <button type="submit" class="logout-button">Sair</button>
-            </form>
-        {% endif %}
+                {% if user.is_authenticated %}
+                <p class="user-greeting">Olá, {{ user.username }}</p>
+                <form method="POST" action="{% url 'logout' %}" class="logout-form">
+                    {% csrf_token %}
+                    <button type="submit" class="logout-button">Sair</button>
+                </form>
+            {% endif %}
             </nav>
-        </header>
+            </header>
+            
 
         <div id="carouselExampleControls" class="carousel slide carousel-container" data-ride="carousel">
           <div class="carousel-inner">

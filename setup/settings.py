@@ -124,3 +124,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = 'login'  # Nome da URL de login
 LOGOUT_REDIRECT_URL = 'index'  # Redireciona para a página inicial após logout
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # Ou o servidor SMTP que você está utilizando
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'seuemail@gmail.com'  # Substitua pelo seu e-mail
+EMAIL_HOST_PASSWORD = 'suasenha'  # Substitua pela sua senha
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'  # Diretório onde os arquivos de mídia serão armazenados
