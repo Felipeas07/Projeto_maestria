@@ -19,8 +19,6 @@
             <a href="{% url 'servicos' %}"><img src="{% static 'assets/ícones/1x/icons8-serviços-25.png' %}"> Serviços</a>
             <a href="{% url 'register' %}"><img src="{% static 'assets/ícones/1x/icons8-cadastro-25.png' %}"> Cadastro</a>
             <a href="{% url 'contato' %}"><img src="{% static 'assets/ícones/1x/icons8-e-mail-25.png' %}"> Contato</a>
-
-            <!-- Verifica se o usuário está logado -->
             {% if user.is_authenticated %}
                 <p class="user-greeting">Olá, {{ user.username }}</p>
                 <form method="POST" action="{% url 'logout' %}" class="logout-form">
@@ -35,7 +33,21 @@
         <section id="servicos">
             <h2>Nossos Serviços</h2>
             <p>Oferecemos uma gama completa de serviços de automação residencial, desde iluminação inteligente até sistemas de segurança avançados.</p>
-            
+
+           <!-- Formulário de busca -->
+            <form method="GET" action="{% url 'buscar_anuncios' %}">
+                <label for="id_categoria">Categoria:</label>
+                {{ form.categoria }}
+
+                <label for="id_valor_min">Valor Mínimo:</label>
+                {{ form.valor_min }}
+
+                <label for="id_valor_max">Valor Máximo:</label>
+                {{ form.valor_max }}
+
+                <button type="submit">Filtrar</button>
+            </form>
+
             <!-- Exibir Anúncios -->
             <h3>Anúncios Recentes</h3>
             <div class="card-container">

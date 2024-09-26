@@ -19,8 +19,8 @@ class CustomUserCreationForm(UserCreationForm):
 
 class AnuncioFilterForm(forms.Form):
     categoria = forms.ModelChoiceField(queryset=Categoria.objects.all(), required=False)
-    valor_min = forms.DecimalField(required=False)
-    valor_max = forms.DecimalField(required=False)
+    valor_min = forms.DecimalField(required=False, min_value=0, label="Valor mínimo")
+    valor_max = forms.DecimalField(required=False, min_value=0, label="Valor máximo")
 
 class ContactForm(forms.Form):
     nome = forms.CharField(max_length=100)

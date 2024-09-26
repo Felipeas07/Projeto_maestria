@@ -25,6 +25,7 @@ def buscar_anuncios(request):
             anuncios = anuncios.filter(valor__lte=form.cleaned_data['valor_max'])
     return render(request, 'galeria/servicos.html', {'form': form, 'anuncios': anuncios})
 
+
 def lista_anuncios(request):
     anuncios = Anuncio.objects.all()
     return render(request, 'galeria/servicos.html', {'anuncios': anuncios})
@@ -47,11 +48,11 @@ def contato(request):
             f"Contato: {motivo}",
             f"Mensagem de {email}:\n\n{mensagem}",
             settings.DEFAULT_FROM_EMAIL,  # Endereço de origem configurado no settings
-            ['admin@example.com'],  # Substitua pelo e-mail do destinatário
+            ['felipeas.inf@gmail.com'],  # Substitua pelo e-mail do destinatário
         )
-        return render(request, 'contato.html', {'success': True})
+        return render(request, 'galeria/contato.html', {'success': True})
 
-    return render(request, 'contato.html')
+    return render(request, 'galeria/contato.html')
 
 def user_login(request):  # Renomeie esta função para evitar conflito
     return render(request, 'galeria/login.html')

@@ -9,12 +9,16 @@ class Anunciante(models.Model):
 class Categoria(models.Model):
     nome = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.nome  # Retorna o nome da categoria
+
 class Anuncio(models.Model):
     titulo = models.CharField(max_length=255)
     descricao = models.TextField()
     valor = models.DecimalField(max_digits=10, decimal_places=2)
     fotos = models.ImageField(upload_to='anuncios_fotos/')
-    data_criacao = models.DateTimeField(auto_now_add=True)
+    categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, default=1)  # ID da categoria padrão
 
     def __str__(self):
         return self.titulo
+
