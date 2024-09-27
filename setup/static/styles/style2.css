@@ -33,6 +33,10 @@ header .menu {
     margin-left: auto;
 }
 
+h2 {
+    margin-top: 50px; /* Ajuste o valor para aumentar o espaço */
+}
+
 /* Ajustar o conteúdo principal para não ficar coberto pelo header */
 body, html {
     margin: 0;
@@ -42,11 +46,16 @@ body, html {
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f0f8ff;
-    padding-top: 80px; /* Ajusta o padding superior para caber o cabeçalho */
+    padding-top: 110px; /* Ajusta o padding superior para caber o cabeçalho */
     display: flex;
     flex-direction: column; /* Adiciona flex-direction para colocar o conteúdo em coluna */
     justify-content: space-between; /* Espaça o conteúdo */
     min-height: 100vh; /* Garante que o corpo ocupe pelo menos a altura da tela */
+}
+
+.video {
+    display: block;          /* Para tratar o vídeo como um bloco */
+    margin: 50px auto;       /* 20px de margem superior e inferior, e auto para centralizar horizontalmente */
 }
 
 .carousel-image {

@@ -1,37 +1,9 @@
+{% extends 'galeria/base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de Usuário</title>
-    <link rel="stylesheet" href="{% static 'styles/style2.css' %}">
-</head>
-<body>
-    <header>
-        <a href="{% url 'index' %}" class="logo">
-            <img src="{% static 'assets/img/logo1.png' %}" alt="logo">
-        </a>
-        <h1>Cadastre-se</h1>
-        <nav class="menu-lateral__navegacao">
-            <a href="{% url 'index' %}"><img src="{% static '/assets/ícones/1x/icons8-casa-25.png' %}"> Home</a>
-            <a href="{% url 'sobre' %}"><img src="{% static '/assets/ícones/1x/icons8-olho-25.png' %}"> Sobre nós</a>
-            <a href="{% url 'servicos' %}"><img src="{% static '/assets/ícones/1x/icons8-serviços-25.png' %}"> Serviços</a>
-            <a href="{% url 'register' %}"><img src="{% static '/assets/ícones/1x/icons8-cadastro-25.png' %}"> Cadastro</a>
-            <a href="{% url 'contato' %}"><img src="{% static '/assets/ícones/1x/icons8-e-mail-25.png' %}"> Contato</a>
-
-            <!-- Verifica se o usuário está logado -->
-            {% if user.is_authenticated %}
-                <p class="user-greeting">Olá, {{ user.username }}</p>
-                <form method="POST" action="{% url 'logout' %}" class="logout-form">
-                    {% csrf_token %}
-                    <button type="submit" class="logout-button">Sair</button>
-                </form>
-            {% endif %}
-        </nav>
-    </header>
+{% block content %}
 
     <main>
+        <h2>Cadastro de Usuário</h2>
         <form method="POST">
             {% csrf_token %}
             {{ form.as_p }}
@@ -41,20 +13,4 @@
         <p>Já tem um cadastro? <a href="{% url 'login' %}">Acesse sua conta</a></p>
     </main>
 
-    <footer class="rodape">
-        <div class="rodape__icones">
-            <a href="#" target=”_blank” >
-                <img src="{% static '/assets/ícones/1x/facebook.png' %}" alt="ícone twitter">
-            </a>
-            <a href="#" target=”_blank” >
-                <img src="{% static '/assets/ícones/1x/instagram.png' %}" alt="ícone instagram">
-            </a>
-            <a href="#" target=”_blank” >
-              <img src="{% static '/assets/ícones/1x/icons8-whatsapp-22.png' %}" alt="ícone whatsapp">
-          </a>
-        </div>
-        <p class="rodape__texto">© 2024 Maestria. Todos os direitos reservados</p>
-    </footer>
-
-</body>
-</html>
+{% endblock %}

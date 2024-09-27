@@ -1,48 +1,6 @@
+{% extends 'galeria/base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maestria - Automação Residencial</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'styles/style2.css' %}">
-</head>
-<body>
-    <div class="background">
-        <header>
-            <a href="{% url 'index' %}" class="logo">
-                <img src="{% static 'assets/img/logo1.png' %}" alt="logo">
-            </a>
-            <h1>Maestria - Automação Residencial</h1>
-            <nav class="menu-lateral__navegacao">
-                <a href="{% url 'index' %}">
-                    <img src="{% static 'assets/ícones/1x/icons8-casa-25.png' %}" alt="Home"> Home
-                </a>
-                <a href="{% url 'sobre' %}">
-                    <img src="{% static 'assets/ícones/1x/icons8-olho-25.png' %}" alt="Sobre nós"> Sobre nós
-                </a>
-                <a href="{% url 'servicos' %}">
-                    <img src="{% static 'assets/ícones/1x/icons8-serviços-25.png' %}" alt="Serviços"> Serviços
-                </a>
-                <a href="{% url 'register' %}">
-                    <img src="{% static 'assets/ícones/1x/icons8-cadastro-25.png' %}" alt="Cadastro"> Cadastro
-                </a>
-                <a href="{% url 'contato' %}">
-                    <img src="{% static 'assets/ícones/1x/icons8-e-mail-25.png' %}" alt="Contato"> Contato
-                </a>
-
-                <!-- Verifica se o usuário está logado -->
-                {% if user.is_authenticated %}
-                <p class="user-greeting">Olá, {{ user.username }}</p>
-                <form method="POST" action="{% url 'logout' %}" class="logout-form">
-                    {% csrf_token %}
-                    <button type="submit" class="logout-button">Sair</button>
-                </form>
-            {% endif %}
-            </nav>
-            </header>
-            
+{% block content %}           
 
         <div id="carouselExampleControls" class="carousel slide carousel-container" data-ride="carousel">
           <div class="carousel-inner">
@@ -77,26 +35,11 @@
           <p>Nossa empresa é especializada em automação Residencial</p>
           <a href="{% url 'servicos' %}" class="btn-conheca-servicos">Conheça nossos serviços</a>
       </div>
+
+      <video class="video" width="900" controls autoplay muted>
+        <source src="{% static 'assets/videos/Automação Residencial Control4.mp4' %}" type="video/mp4">
+        Seu navegador não suporta o elemento de vídeo.
+    </video>
       
     </div>
-
-    <footer class="rodape">
-      <div class="rodape__icones">
-          <a href="https://www.facebook.com/p/Maestria-Automa%C3%A7%C3%A3o-100079917003007/" target=”_blank” >
-              <img src="{% static '/assets/ícones/1x/facebook.png' %}" alt="ícone facebook">
-          </a>
-          <a href="#" target=”_blank” >
-              <img src="{% static '/assets/ícones/1x/instagram.png' %}" alt="ícone instagram">
-          </a>
-          <a href="#" target=”_blank” >
-            <img src="{% static '/assets/ícones/1x/icons8-whatsapp-22.png' %}" alt="ícone whatsapp">
-        </a>
-      </div>
-      <p class="rodape__texto">© 2024 Maestria. Todos os direitos reservados</p>
-  </footer>
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-</body>
-</html>
+{% endblock %}

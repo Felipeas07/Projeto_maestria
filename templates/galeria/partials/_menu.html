@@ -1,0 +1,38 @@
+{% load static %}
+
+<header>
+    <a href="{% url 'index' %}" class="logo">
+        <img src="{% static 'assets/img/logo1.png' %}" alt="logo">
+    </a>
+    <h1>Maestria - Automação Residencial</h1>
+    <nav class="menu-lateral__navegacao">
+        <a href="{% url 'index' %}">
+            <img src="{% static 'assets/ícones/1x/icons8-casa-25.png' %}" alt="Home"> Home
+        </a>
+        <a href="{% url 'sobre' %}">
+            <img src="{% static 'assets/ícones/1x/icons8-olho-25.png' %}" alt="Sobre nós"> Sobre nós
+        </a>
+        <a href="{% url 'servicos' %}">
+            <img src="{% static 'assets/ícones/1x/icons8-serviços-25.png' %}" alt="Serviços"> Serviços
+        </a>
+        <a href="{% url 'register' %}">
+            <img src="{% static 'assets/ícones/1x/icons8-cadastro-25.png' %}" alt="Cadastro"> Cadastro
+        </a>
+        <a href="{% url 'contato' %}">
+            <img src="{% static 'assets/ícones/1x/icons8-e-mail-25.png' %}" alt="Contato"> Contato
+        </a>
+
+                <!-- Verifica se o usuário está logado -->
+        {% if user.is_authenticated %}
+        <p class="user-greeting">Olá, {{ user.username }}</p>
+        <form method="POST" action="{% url 'logout' %}" class="logout-form">
+            {% csrf_token %}
+            <button type="submit" class="logout-button">Sair</button>
+        </form>
+        {% else %}
+        <!-- Mostrar link de login se o usuário não estiver autenticado -->
+        <a href="{% url 'login' %}" class="login-button">Entrar</a>
+        {% endif %}
+
+    </nav>
+    </header>
