@@ -1,5 +1,7 @@
 Projeto de Web com Django
+
 Introdução
+
 Este projeto tem como objetivo desenvolver uma plataforma para a gestão de anúncios, onde usuários podem cadastrar, visualizar e filtrar anúncios baseados em categorias e valores.
 
 Estrutura do Projeto
