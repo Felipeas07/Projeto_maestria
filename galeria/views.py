@@ -74,18 +74,18 @@ def login_view(request):
 
 def register(request):
     if request.method == 'POST':
-        form = CustomUserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST, request.FILES)  # Inclui request.FILES para lidar com o upload de arquivos
         if form.is_valid():
             user = form.save()
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             if user is not None:  # Verifica se o usuário foi autenticado
-                auth_login(request, user)  # Chamada correta para a função login do Django
+                auth_login(request, user)  # Faz login automático após o cadastro
                 return redirect('index')  # Redireciona para a página inicial após login automático
     else:
         form = CustomUserCreationForm()
-    
+
     return render(request, 'galeria/register.html', {'form': form})
 
 # Função de logout

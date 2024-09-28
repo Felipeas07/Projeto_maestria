@@ -22,9 +22,17 @@
             <img src="{% static 'assets/ícones/1x/icons8-e-mail-25.png' %}" alt="Contato"> Contato
         </a>
 
-                <!-- Verifica se o usuário está logado -->
+        <!-- Verifica se o usuário está logado -->
         {% if user.is_authenticated %}
-        <p class="user-greeting">Olá, {{ user.username }}</p>
+        <div class="user-info">
+            <!-- Verifica se o avatar do usuário existe. Se não, exibe a imagem padrão -->
+            {% if user.profile.avatar %}
+                <img src="{{ user.profile.avatar.url }}" alt="Avatar de {{ user.username }}" class="avatar-img">
+            {% else %}
+                <img src="{% static 'assets/img/avatar.png' %}" alt="Avatar padrão" class="avatar-img">
+            {% endif %}
+            <p class="user-greeting">Olá, {{ user.username }}</p>
+        </div>
         <form method="POST" action="{% url 'logout' %}" class="logout-form">
             {% csrf_token %}
             <button type="submit" class="logout-button">Sair</button>
@@ -33,6 +41,5 @@
         <!-- Mostrar link de login se o usuário não estiver autenticado -->
         <a href="{% url 'login' %}" class="login-button">Entrar</a>
         {% endif %}
-
     </nav>
-    </header>
+</header>
